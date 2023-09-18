@@ -7,22 +7,25 @@ import { MessageSquare } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
+import { ChatCompletionMessageParam } from "openai/resources/chat/index.mjs";
 
-import { Heading } from "@/components/heading";
-import { Empty } from "@/components/empty";
-import { Loader } from "@/components/loader";
+
 import { 
   Form, 
   FormControl, 
   FormField, 
   FormItem 
 } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Heading } from "@/components/heading";
+import { Empty } from "@/components/empty";
+import { Loader } from "@/components/loader";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { UserAvatar } from "@/components/user-avatar";
+import { BotAvatar } from "@/components/bot-avatar";
 
 import { formSchema } from "./constants";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { ChatCompletionMessageParam } from "openai/resources/chat/index.mjs";
-import { cn } from "@/lib/utils";
 
 
 
@@ -132,7 +135,11 @@ const ConversationPage = () =>{
                         message.role === "user" ? "bg-white border border-black/10" : "bg-muted"
                       )}
                       >
+                        {message.role === "user" ? <UserAvatar/> : <BotAvatar/>}
+                        <p className="text-sm">
                         {message.content}
+                        </p>
+                        
 
                       </div>
                     ))}
