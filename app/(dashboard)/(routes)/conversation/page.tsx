@@ -24,13 +24,13 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { UserAvatar } from "@/components/user-avatar";
 import { BotAvatar } from "@/components/bot-avatar";
+import { useProModal } from "@/hooks/use-pro-model";
 
 import { formSchema } from "./constants";
 
 
-
-
 const ConversationPage = () =>{
+  const proModal = useProModal();
   const router = useRouter();
   const [messages, setMessages] = useState<ChatCompletionMessageParam[]>([]);
 
@@ -60,10 +60,10 @@ const ConversationPage = () =>{
 
       form.reset();
     } catch (error: any) {
+        if(error?.response?.status === 403){
+            proModal.onOpen();
+        }
 
-      //TODO: open pro model(adding the subsciption)
-      
-      console.log(error);
     } finally{
        router.refresh();
     }

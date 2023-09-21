@@ -22,11 +22,13 @@ import { Loader } from "@/components/loader";
 import { Button } from "@/components/ui/button";
 
 import { formSchema } from "./constants";
+import { useProModal } from "@/hooks/use-pro-model";
 
 
 
 
 const VideoPage = () =>{
+  const proModal = useProModal();
   const router = useRouter();
   const [video, setVideo] = useState<string>();
 
@@ -51,9 +53,9 @@ const VideoPage = () =>{
       form.reset();
     } catch (error: any) {
 
-      //TODO: open pro model(adding the subsciption)
-      
-      console.log(error);
+      if(error?.response?.status === 403){
+        proModal.onOpen();
+    }
     } finally{
        router.refresh();
     }
