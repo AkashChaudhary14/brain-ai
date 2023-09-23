@@ -7,6 +7,7 @@ import { Music } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 
 import { 
@@ -23,9 +24,6 @@ import { Button } from "@/components/ui/button";
 
 import { formSchema } from "./constants";
 import { useProModal } from "@/hooks/use-pro-model";
-
-
-
 
 const MusicPage = () =>{
   const proModal = useProModal();
@@ -56,6 +54,8 @@ const MusicPage = () =>{
      
       if(error?.response?.status === 403){
         proModal.onOpen();
+    }else{
+      toast.error("Something went wrong");
     }
     } finally{
        router.refresh();
