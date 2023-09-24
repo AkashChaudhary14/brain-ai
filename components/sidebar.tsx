@@ -87,7 +87,7 @@ const Sidebar = ({
                     <Image
                     fill
                     alt="Logo"
-                    src="/logo.png"
+                    src="/Logo.png"
                     />
                 </div>
                 <h1 className={cn ("text-2xl font-bold", montserrat.className)}>
