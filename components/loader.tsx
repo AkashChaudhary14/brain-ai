@@ -7,7 +7,7 @@ export const Loader = ()=>{
          <Image
          alt="logo"
          fill 
-         src="/logo.png"
+         src="/Logo.png"
          />
         </div>
         <p className="text-sm text-muted-foreground">
