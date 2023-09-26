@@ -66,7 +66,7 @@ const ImagePage = () =>{
       form.reset();
     } catch (error: any) {
 
-     
+      console.error("API Error:", error);
       if(error?.response?.status === 403){
         proModal.onOpen();
     }else{
